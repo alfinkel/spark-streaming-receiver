@@ -26,7 +26,8 @@ object SparkMHReceiver extends Logging {
   def main(args: Array[String]): Unit = {
     val conf = new SparkConf().setAppName("Spark Streaming with MessageHub")
     val sc = new SparkContext(conf)
-    startMessageHubStreaming(sc, "eN1qmxY3qe0TqSie", "qmSVDFYuAGhqQOWWyg3GKJsK8eILeqAV");
+    val Array(username, password, numSeconds) = args
+    startMessageHubStreaming(sc, username, password, numSeconds.toInt);
   }
 
   def startMessageHubStreaming( sc: SparkContext, username: String, password: String, sec: Int=5) {
